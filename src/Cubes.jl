@@ -17,16 +17,22 @@ const ListOfCubes = Vector{Cube}
 cubes_hash(cubes::ListOfCubes) = reduce(vcat, map(cube->[cube.capacity, cube.amount],cubes))
 
 const Visited = Set{Vector{Capacity}}
+
 function add_to_visited(set::Visited, cubes::ListOfCubes)
     hash = cubes_hash(cubes)
     push!(set, hash)
 end
-
+## Operation on cubes
 to_full(cube::Cube) = Cube(cube.capacity, cube.capacity)
 to_zero(cube::Cube) = Cube(cube.capacity, 0)
 
-fromList(a) = sort(map(e -> Cube(e,0),a), by=cube -> cube.capacity)
+# all posible combinations
+
+## Creation of cubes from list
+fromList(a::Vector{Capacity})::ListOfCubes = sort(map(e -> Cube(e,0),a), by=cube -> cube.capacity)
 fromPair(pairs) = sort(map(p -> Cube(p...),pairs), by=cube -> cube.capacity)
+
+
 
 ## --------------------------------------------------------
 ## -------------------State struct ------------------------

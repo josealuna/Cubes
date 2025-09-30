@@ -22,14 +22,13 @@ end
     @test isSolutionQ(state_simple_sol,5)
     @test !isSolutionQ(state_simple_sol,3)
 
-    
-
 end
 
 @testset "Visited States" begin
     ## Some examples
     state_simple_sol = State(fromPair([[2, 1],[3,2],[7,5]]),5)
     visited::Visited = Set()
+
     # At the very begining the state has not been visited
     @test !hasBeenVisited(visited, state_simple_sol)
     @test (state_simple_sol.cubes |> cubes_hash) == [2, 1, 3, 2, 7, 5]
@@ -44,8 +43,6 @@ end
     @test length(visited) == 1
     add_to_visited(visited,fromPair([[2, 1],[3,2],[7,7]]))
     @test length(visited) == 2
-
-
 
 
 end
