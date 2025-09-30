@@ -1,7 +1,8 @@
 module Cubes
 using Combinatorics
 export Cube, to_full, to_zero, isSolutionQ, fromList, fromPair, State, 
-       isSolutionQ, cubes_hash, Visited, add_to_visited, addStateToVisited, hasBeenVisited
+       isSolutionQ, cubes_hash, Visited, add_to_visited, addStateToVisited, hasBeenVisited,
+       pourAtoB
 ## --------------------------------------------------------
 ## -------------------Cube struct -------------------------
 ## --------------------------------------------------------
@@ -33,6 +34,12 @@ to_zero(cube::Cube) = Cube(cube.capacity, 0)
 fromList(a::Vector{Capacity})::ListOfCubes = sort(map(e -> Cube(e,0),a), by=cube -> cube.capacity)
 fromPair(pairs) = sort(map(p -> Cube(p...),pairs), by=cube -> cube.capacity)
 
+## Functionality
+function pourAtoB(A::Cube,B::Cube)::ListOfCubes
+   toTransfer =  min(A.amount, (B.capacity - B.amount))
+   [Cube(A.capacity, A.amount - toTransfer) ,
+    Cube(B.capacity, B.amount + toTransfer)]
+end
 
 
 ## --------------------------------------------------------

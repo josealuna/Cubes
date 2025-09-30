@@ -1,8 +1,14 @@
 using Cubes
 using Test
 using Combinatorics
+
+
+test_name_1 = "Bases ----------------"
+test_name_2 = "Transfering operations"
+test_name_3 = "Cubes functionality---"
+test_name_4 = "Visited States--------"
     
-@testset "Bases" begin
+@testset "$test_name_1" begin
     # some test data
     cubes = fromPair([[2, 1],[3,2],[7,5]])
     # checking the behabiour of the combinations with cubes
@@ -14,7 +20,25 @@ using Combinatorics
         ]
 end
 
-@testset "Cubes.jl" begin
+@testset "$test_name_2"  begin
+    
+    A = Cube(5, 3)  # 3 to transfer
+    B = Cube(3, 1)  # 2 to recieve
+    Anew, Bnew = pourAtoB(A,B)
+
+    @test A.capacity == Anew.capacity
+    @test B.capacity == Bnew.capacity
+
+    @test A.amount == 3
+    @test B.amount == 1
+
+    @test Anew.amount == 1
+    @test Bnew.amount == 3 # full
+
+
+end
+
+@testset "$test_name_3" begin
     # Some data
     state_simple_sol = State(fromPair([[2, 1],[3,2],[7,5]]),5)
 
@@ -30,7 +54,7 @@ end
 
 end
 
-@testset "Visited States" begin
+@testset "$test_name_4" begin
     ## Some examples
     state_simple_sol = State(fromPair([[2, 1],[3,2],[7,5]]),5)
     visited::Visited = Set()
