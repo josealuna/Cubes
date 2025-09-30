@@ -1,0 +1,13 @@
+name = "Cubes"
+uuid = "e70a31c2-11b8-4722-9518-be8b155cada2"
+authors = ["Jose"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.11"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
