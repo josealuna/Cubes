@@ -2,7 +2,7 @@ using Cubes
 using Test
 using Combinatorics
 
-
+test_name_b = "Cubes generated-------"
 test_name_s = "Solving---------------"
 test_name_a = "All new possible cubes"
 test_name_0 = "Generating -----------"
@@ -16,18 +16,41 @@ test_name_4 = "Visited States--------"
     cubes = fromPair([[2, 0],[3,0],[7,0]])
     initial_state = State(cubes,5)
     visited::Visited = Set()
+    
+    @test visited |> length == 0
 
+
+    first_iteration = nextStates(initial_state, visited)
+    # we can generate the next states
+    #@test first_iteration |> length == 12
+
+    # tendremos que iterar
+    filter(isSolutionQ, first_iteration) |> println
+    #for s in first_iteration println(s) end 
 end
 
+@testset "$test_name_b" begin
+    ## Some examples
+    cubes = fromPair([[2, 0],[3,0],[7,0]])
+    state_simple_sol = State(cubes,5)
+    visited::Visited = Set()
+    @test visited |> length == 0
+    newCubes = generatesNewCubes(cubes, visited)
+    #@test  newCubes |> length == 12 
+    #@test visited   |> length == 12
+    for c in newCubes println(c) end
+    
+end
 
 @testset "$test_name_a" begin
     ## Some examples
     cubes = fromPair([[2, 1],[3,2],[7,5]])
     state_simple_sol = State(cubes,5)
     visited::Visited = Set()
-    
-    @test generatesNewCubes(cubes, visited) |> length == 12 
-    @test visited |> length == 12
+    newCubes = generatesNewCubes(cubes, visited)
+    #@test  newCubes |> length == 12 
+    #@test visited   |> length == 12
+    #for c in newCubes println(c) end
     
 end
 

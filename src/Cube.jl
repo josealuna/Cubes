@@ -106,20 +106,30 @@ end
 
 ## Generate all possible cubes from a list of cubes
 function generatesNewCubes(cubes::ListOfCubes, visited::Visited)
+    uni = []
+    bin = []
+    for c in allCubesUniOP(cubes)
+        if !hasBeenVisited(visited,c)
+            push!(uni, c)
+            add_to_visited(visited, c)
+        end
+    end
 
-    uni = filter(l -> !hasBeenVisited(visited,l), allCubesUniOP(cubes))
-    bin = filter(l -> !hasBeenVisited(visited,l), allCubesBinaryOP(cubes))
-    
+    for c in allCubesBinaryOP(cubes)
+        if !hasBeenVisited(visited,c)
+            push!(bin, c)
+            add_to_visited(visited, c)
+        end
+    end
 
-    no_inconsistence = cubes -> !any(cube -> cube.amount > cube.capacity,cubes)
-
-    uni = filter(no_inconsistence, uni)
-    bin = filter(no_inconsistence, bin)
     
     res = vcat(uni,bin)
-    # adding to our visited space
-    for cubes in res add_to_visited(visited, cubes) end
+    
     res
 
+end
+
+function nextStates(state, visited)
+   [State(cubes, state.goal) for cubes in generatesNewCubes(state.cubes, visited)]
 end
 
