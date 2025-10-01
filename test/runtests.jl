@@ -13,12 +13,18 @@ test_name_4 = "Visited States--------"
     # nextCubes(cubes::ListOfCubes,cube::Cube, uniOP) 
     cubes = fromPair([[2, 1],[3,2],[7,5]])
     element = Cube(2,1)
-    @test nextCubes(cubes, element, to_full) == 
+    @test nextCubesUniOP(cubes, element, to_full) == 
             [Cube(2, 2), Cube(3, 2), Cube(7, 5)] # Cube(2,1) is full  now
     
-    @test nextCubes(cubes, element, to_zero) == 
+    @test nextCubesUniOP(cubes, element, to_zero) == 
             [Cube(2, 0), Cube(3, 2), Cube(7, 5)] # Cube(2,1) is empty  now
 
+
+    @test nextCubesBinaryOP(cubes, fromPair([[7,5],[3,2]]), pourAtoB) ==
+        [Cube(2, 1), Cube(3, 0), Cube(7, 7)] # transfer from 3,0 to 7,5
+   
+    @test nextCubesBinaryOP(cubes, [Cube([7,5]...),Cube([3,2]...)], pourAtoB) ==
+        [Cube(2, 1), Cube(3, 3), Cube(7, 4)] # transfer from Cube(7,5) --> Cube(3,2)
 end
     
 @testset "$test_name_1" begin

@@ -49,7 +49,7 @@ end
 ## listOfCubes -> (uniOP -> Cube -> Cube) -> ListOfCubes
 ## Just makes one change 
 ## must order
-function nextCubes(cubes::ListOfCubes,cube::Cube, uniOP) 
+function nextCubesUniOP(cubes::ListOfCubes,cube::Cube, uniOP) 
     set_test   = Set(cubes)
     element    = Set([cube])
     newElement = Set([uniOP(cube)])
@@ -57,6 +57,17 @@ function nextCubes(cubes::ListOfCubes,cube::Cube, uniOP)
     rest       = setdiff(set_test,element)
     # add the new element
     sort(union(newElement, rest) |> collect, by=e -> e.capacity)
-
 end
 
+## listOfCubes -> (uniOP -> [Cube, Cube] -> [Cube, Cube]) -> ListOfCubes
+## Just makes one change 
+## must order
+function nextCubesBinaryOP(cubes::ListOfCubes,two::ListOfCubes, binaryOP) 
+    set_test   = Set(cubes)
+    elements   = Set(two)
+    new_eles   = Set(binaryOP(two...))  # apply
+    # substract the element
+    rest       = setdiff(set_test,elements)
+    # add the new element
+    sort(union(new_eles, rest) |> collect, by=e -> e.capacity)
+end
