@@ -3,12 +3,22 @@ using Test
 using Combinatorics
 
 
+test_name_s = "Solving---------------"
 test_name_a = "All new possible cubes"
 test_name_0 = "Generating -----------"
 test_name_1 = "Bases ----------------"
 test_name_2 = "Transfering operations"
 test_name_3 = "Cubes functionality---"
 test_name_4 = "Visited States--------"
+
+
+@testset "$test_name_s" begin
+    cubes = fromPair([[2, 0],[3,0],[7,0]])
+    initial_state = State(cubes,5)
+    visited::Visited = Set()
+
+end
+
 
 @testset "$test_name_a" begin
     ## Some examples

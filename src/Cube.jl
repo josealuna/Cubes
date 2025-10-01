@@ -108,7 +108,14 @@ function generatesNewCubes(cubes::ListOfCubes, visited::Visited)
     uni = filter(l -> !hasBeenVisited(visited,l), allCubesUniOP(cubes))
     bin = filter(l -> !hasBeenVisited(visited,l), allCubesBinaryOP(cubes))
     
+
+    no_inconsistence = cubes -> !any(cube -> cube.amount > cube.capacity,cubes)
+
+    uni = filter(no_inconsistence, uni)
+    bin = filter(no_inconsistence, bin)
+    
     res = vcat(uni,bin)
+    # adding to our visited space
     for cubes in res add_to_visited(visited, cubes) end
     res
 
