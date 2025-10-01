@@ -71,3 +71,13 @@ function nextCubesBinaryOP(cubes::ListOfCubes,two::ListOfCubes, binaryOP)
     # add the new element
     sort(union(new_eles, rest) |> collect, by=e -> e.capacity)
 end
+
+## Obtaining all possibilities for applying the uniOperator
+function allCubesFromUniOP(cubes::ListOfCubes, uniOP)
+        [nextCubesUniOP(cubes, cube, uniOP) for cube in cubes]
+end
+
+
+function allCubesUniOP(cubes::ListOfCubes) 
+    vcat(allCubesFromUniOP(cubes,to_full), allCubesFromUniOP(cubes,to_zero))
+end

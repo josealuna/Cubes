@@ -22,9 +22,13 @@ test_name_4 = "Visited States--------"
 
     @test nextCubesBinaryOP(cubes, fromPair([[7,5],[3,2]]), pourAtoB) ==
         [Cube(2, 1), Cube(3, 0), Cube(7, 7)] # transfer from 3,0 to 7,5
-   
+   # transfer from Cube(7,5) --> Cube(3,2)
     @test nextCubesBinaryOP(cubes, [Cube([7,5]...),Cube([3,2]...)], pourAtoB) ==
-        [Cube(2, 1), Cube(3, 3), Cube(7, 4)] # transfer from Cube(7,5) --> Cube(3,2)
+        [Cube(2, 1), Cube(3, 3), Cube(7, 4)] 
+
+
+    allCubesFromUniOP(cubes, to_full)   |> println
+    allCubesUniOP(cubes)                |> println
 end
     
 @testset "$test_name_1" begin
