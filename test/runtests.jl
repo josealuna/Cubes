@@ -36,21 +36,19 @@ end
     visited::Visited = Set()
     @test visited |> length == 0
     newCubes = generatesNewCubes(cubes, visited)
-    #@test  newCubes |> length == 12 
-    #@test visited   |> length == 12
-    for c in newCubes println(c) end
+    @test  newCubes |> length == 4 
+    @test visited   |> length == 4
+    #for c in newCubes println(c) end
+    solving(state_simple_sol, visited, 0) |> println
     
 end
 
 @testset "$test_name_a" begin
     ## Some examples
     cubes = fromPair([[2, 1],[3,2],[7,5]])
-    state_simple_sol = State(cubes,5)
+    state_simple_sol = State(cubes,7)
     visited::Visited = Set()
-    newCubes = generatesNewCubes(cubes, visited)
-    #@test  newCubes |> length == 12 
-    #@test visited   |> length == 12
-    #for c in newCubes println(c) end
+    solving(state_simple_sol, visited, 0)[1]  |> println
     
 end
 

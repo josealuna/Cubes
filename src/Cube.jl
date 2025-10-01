@@ -106,8 +106,7 @@ end
 
 ## Generate all possible cubes from a list of cubes
 function generatesNewCubes(cubes::ListOfCubes, visited::Visited)
-    uni = []
-    bin = []
+    uni = []; bin = []
     for c in allCubesUniOP(cubes)
         if !hasBeenVisited(visited,c)
             push!(uni, c)
