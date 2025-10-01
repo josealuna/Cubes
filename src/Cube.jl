@@ -49,10 +49,14 @@ end
 ## listOfCubes -> (uniOP -> Cube -> Cube) -> ListOfCubes
 ## Just makes one change 
 ## must order
-function nextCubes(cubes::ListOfCubes,cube::Cube, uniOp) 
-
-    
-
+function nextCubes(cubes::ListOfCubes,cube::Cube, uniOP) 
+    set_test   = Set(cubes)
+    element    = Set([cube])
+    newElement = Set([uniOP(cube)])
+    # substract the element
+    rest       = setdiff(set_test,element)
+    # add the new element
+    sort(union(newElement, rest) |> collect, by=e -> e.capacity)
 
 end
 

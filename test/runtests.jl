@@ -2,11 +2,24 @@ using Cubes
 using Test
 using Combinatorics
 
-
+test_name_0 = "Generating -----------"
 test_name_1 = "Bases ----------------"
 test_name_2 = "Transfering operations"
 test_name_3 = "Cubes functionality---"
 test_name_4 = "Visited States--------"
+
+
+@testset "$test_name_0" begin
+    # nextCubes(cubes::ListOfCubes,cube::Cube, uniOP) 
+    cubes = fromPair([[2, 1],[3,2],[7,5]])
+    element = Cube(2,1)
+    @test nextCubes(cubes, element, to_full) == 
+            [Cube(2, 2), Cube(3, 2), Cube(7, 5)] # Cube(2,1) is full  now
+    
+    @test nextCubes(cubes, element, to_zero) == 
+            [Cube(2, 0), Cube(3, 2), Cube(7, 5)] # Cube(2,1) is empty  now
+
+end
     
 @testset "$test_name_1" begin
     # some test data
