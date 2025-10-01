@@ -101,12 +101,16 @@ function allCubesBinaryOP(cubes::ListOfCubes)
     [nextCubesBinaryOP(cubes,par, pourAtoB) for par in  allCombinations(cubes)]
 end
 
+
+## Generate all possible cubes from a list of cubes
 function generatesNewCubes(cubes::ListOfCubes, visited::Visited)
 
     uni = filter(l -> !hasBeenVisited(visited,l), allCubesUniOP(cubes))
     bin = filter(l -> !hasBeenVisited(visited,l), allCubesBinaryOP(cubes))
     
-    vcat(uni,bin)
+    res = vcat(uni,bin)
+    for cubes in res add_to_visited(visited, cubes) end
+    res
 
 end
 

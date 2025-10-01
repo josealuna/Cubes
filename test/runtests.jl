@@ -11,7 +11,13 @@ test_name_3 = "Cubes functionality---"
 test_name_4 = "Visited States--------"
 
 @testset "$test_name_a" begin
-       
+    ## Some examples
+    cubes = fromPair([[2, 1],[3,2],[7,5]])
+    state_simple_sol = State(cubes,5)
+    visited::Visited = Set()
+    
+    @test generatesNewCubes(cubes, visited) |> length == 12 
+    @test visited |> length == 12
     
 end
 
@@ -60,6 +66,9 @@ end
     @test Cube(1,0) in set_test
     # the rest of the set
     @test setdiff(set_test,Set([Cube(1,0)])) == Set([Cube(3,1)])
+
+    # testing some any. No one can have amount bigger than capacity
+    @test !any(cube -> cube.amount > cube.capacity, fromPair([[2, 1],[3,2],[7,5]]))
 end
 
 @testset "$test_name_2"  begin
