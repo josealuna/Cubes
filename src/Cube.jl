@@ -95,6 +95,8 @@ function allCubesUniOP(cubes::ListOfCubes)
     vcat(allCubesFromUniOP(cubes,to_full), allCubesFromUniOP(cubes,to_zero))
 end
 
+
+## Bacically we have all functionality
 ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ## all combinatios for binary operations
 function allCubesBinaryOP(cubes::ListOfCubes)
