@@ -36,10 +36,13 @@ end
     cubes = fromPair([[2, 1],[3,2],[7,5]])
     # checking the behabiour of the combinations with cubes
     @test (collect(combinations([1,2, 3],2))) == [[1,2], [1,3], [2,3]]
-    @test (collect(combinations(cubes,2))) == 
+    @test allCombinations(cubes) == 
         [[Cube(2,1), Cube(3,2)],
          [Cube(2,1), Cube(7,5)],
-         [Cube(3,2), Cube(7,5)]
+         [Cube(3,2), Cube(7,5)],
+         [Cube(3,2), Cube(2,1)],
+         [Cube(7,5), Cube(2,1)],
+         [Cube(7,5), Cube(3,2)]
         ]
     # Cubes are equals
     @test Cube(1,2) == Cube(1,2)

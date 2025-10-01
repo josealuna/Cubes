@@ -36,6 +36,14 @@ function pourAtoB(A::Cube,B::Cube)::ListOfCubes
     Cube(B.capacity, B.amount + toTransfer)]
 end
 
+function allCombinations(cubes::ListOfCubes)
+    all = collect(combinations(cubes,2))
+    vcat(all, map(reverse,all))
+end
+
+
+## All combinations of cubes
+
 
 # We need to create all the different combination 
 # so from a list of Cubes, we need to create the
@@ -81,3 +89,5 @@ end
 function allCubesUniOP(cubes::ListOfCubes) 
     vcat(allCubesFromUniOP(cubes,to_full), allCubesFromUniOP(cubes,to_zero))
 end
+
+
