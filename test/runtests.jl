@@ -18,6 +18,14 @@ test_name_4 = "Visited States--------"
          [Cube(2,1), Cube(7,5)],
          [Cube(3,2), Cube(7,5)]
         ]
+    # Cubes are equals
+    @test Cube(1,2) == Cube(1,2)
+    # member of a array3
+    # Idea using set
+    set_test = Set([Cube(1,0),Cube(3,1)])
+    @test Cube(1,0) in set_test
+    # the rest of the set
+    @test setdiff(set_test,Set([Cube(1,0)])) == Set([Cube(3,1)])
 end
 
 @testset "$test_name_2"  begin

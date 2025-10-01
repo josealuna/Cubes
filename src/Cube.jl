@@ -36,3 +36,23 @@ function pourAtoB(A::Cube,B::Cube)::ListOfCubes
     Cube(B.capacity, B.amount + toTransfer)]
 end
 
+
+# We need to create all the different combination 
+# so from a list of Cubes, we need to create the
+# for each cube in the list of cubes we need to 
+# 1. create a state where one is change and the are the same
+# 2. for each pair of cubes we create a new state where two cubes
+# change and the rest remaing the same.
+# 1 -- We need to change one take the rest and create a list with 
+# the new and the rest.
+
+## listOfCubes -> (uniOP -> Cube -> Cube) -> ListOfCubes
+## Just makes one change 
+## must order
+function nextCubes(cubes::ListOfCubes,cube::Cube, uniOp) 
+
+    
+
+
+end
+
