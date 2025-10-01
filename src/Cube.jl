@@ -19,6 +19,8 @@ function add_to_visited(set::Visited, cubes::ListOfCubes)
     hash = cubes_hash(cubes)
     push!(set, hash)
 end
+
+
 ## Operation on cubes
 to_full(cube::Cube) = Cube(cube.capacity, cube.capacity)
 to_zero(cube::Cube) = Cube(cube.capacity, 0)
@@ -36,6 +38,8 @@ function pourAtoB(A::Cube,B::Cube)::ListOfCubes
     Cube(B.capacity, B.amount + toTransfer)]
 end
 
+
+## All combinatios of two cubes
 function allCombinations(cubes::ListOfCubes)
     all = collect(combinations(cubes,2))
     vcat(all, map(reverse,all))
@@ -67,7 +71,7 @@ function nextCubesUniOP(cubes::ListOfCubes,cube::Cube, uniOP)
     sort(union(newElement, rest) |> collect, by=e -> e.capacity)
 end
 
-## listOfCubes -> (uniOP -> [Cube, Cube] -> [Cube, Cube]) -> ListOfCubes
+## listOfCubes -> (binaryOP -> [Cube, Cube] -> [Cube, Cube]) -> ListOfCubes
 ## Just makes one change 
 ## must order
 function nextCubesBinaryOP(cubes::ListOfCubes,two::ListOfCubes, binaryOP) 
@@ -85,9 +89,24 @@ function allCubesFromUniOP(cubes::ListOfCubes, uniOP)
         [nextCubesUniOP(cubes, cube, uniOP) for cube in cubes]
 end
 
-
+## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+## obtaining all the  combinations using  the unary operators
 function allCubesUniOP(cubes::ListOfCubes) 
     vcat(allCubesFromUniOP(cubes,to_full), allCubesFromUniOP(cubes,to_zero))
 end
 
+## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+## all combinatios for binary operations
+function allCubesBinaryOP(cubes::ListOfCubes)
+    [nextCubesBinaryOP(cubes,par, pourAtoB) for par in  allCombinations(cubes)]
+end
+
+function generatesNewCubes(cubes::ListOfCubes, visited::Visited)
+
+    uni = filter(l -> !hasBeenVisited(visited,l), allCubesUniOP(cubes))
+    bin = filter(l -> !hasBeenVisited(visited,l), allCubesBinaryOP(cubes))
+    
+    vcat(uni,bin)
+
+end
 

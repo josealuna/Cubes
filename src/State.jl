@@ -11,3 +11,7 @@ isSolutionQ(state::State, goal::Capacity) = any(cube -> cube.amount == goal, sta
 addStateToVisited(set::Visited, state::State) = add_to_visited(set, state.cubes)
 
 hasBeenVisited(set::Visited, state::State)    = in(state.cubes |> cubes_hash, set)
+
+## To see if a list of cubes has been visited
+hasBeenVisited(set::Visited, cubes)    = in(cubes |> cubes_hash, set)
+

@@ -2,12 +2,18 @@ using Cubes
 using Test
 using Combinatorics
 
+
+test_name_a = "All new possible cubes"
 test_name_0 = "Generating -----------"
 test_name_1 = "Bases ----------------"
 test_name_2 = "Transfering operations"
 test_name_3 = "Cubes functionality---"
 test_name_4 = "Visited States--------"
 
+@testset "$test_name_a" begin
+       
+    
+end
 
 @testset "$test_name_0" begin
     # nextCubes(cubes::ListOfCubes,cube::Cube, uniOP) 
@@ -27,8 +33,10 @@ test_name_4 = "Visited States--------"
         [Cube(2, 1), Cube(3, 3), Cube(7, 4)] 
 
 
-    allCubesFromUniOP(cubes, to_full)   |> println
-    allCubesUniOP(cubes)                |> println
+    #allCubesFromUniOP(cubes, to_full)   |> println
+    #allCubesUniOP(cubes)                |> println
+
+    #allCubesBinaryOP(cubes)              |> println
 end
     
 @testset "$test_name_1" begin
